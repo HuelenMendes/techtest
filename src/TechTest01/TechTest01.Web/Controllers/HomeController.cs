@@ -8,7 +8,7 @@ namespace TechTest01.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        // GET: Home hqm
         public ActionResult Index()
         {
             return View();
