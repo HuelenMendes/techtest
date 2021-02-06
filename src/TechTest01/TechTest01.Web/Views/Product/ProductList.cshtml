@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TechTest01.Domain.Catalog.Product>
+
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<h2>ProductList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>      
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>      
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>     
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageUrl)
+        </td>
+        <td>           
+            @Html.ActionLink("Product Details", "ProductDetails", new { id=item.Id })            
+        </td>
+    </tr>
+}
+
+</table>
