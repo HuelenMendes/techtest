@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TechTest01.Web.Models.ProductsModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Product List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img alt="im" width="150" height="150" src="@item.ImageUrl" />
+            </td>
+            <td>
+
+                @Html.RouteLink("Product Details", routeName: "Index",
+        routeValues: new { controller = "Product", action = "Index", slug = @item.Slug })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</p>

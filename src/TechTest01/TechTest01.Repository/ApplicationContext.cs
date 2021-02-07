@@ -9,9 +9,20 @@ using TechTest01.Domain.Catalog;
 
 namespace TechTest01.Domain
 {
-   public class ApplicationContext : DbContext
+   public sealed class ApplicationContext : DbContext
     {
-        public ApplicationContext() : base("name=ApplicationContext")
+        private static ApplicationContext instance = null;
+        public static ApplicationContext GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new ApplicationContext();
+
+                return instance;
+            }
+        }
+        private ApplicationContext() : base("name=ApplicationContext")
         {
             Database.SetInitializer<ApplicationContext>(new TechDBInitializer());
         }

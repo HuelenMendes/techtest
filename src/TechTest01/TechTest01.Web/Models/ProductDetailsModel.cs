@@ -6,10 +6,8 @@ using TechTest01.Domain.Catalog;
 
 namespace TechTest01.Web.Models
 {
-    public class ProductModel
-    {
-       public List<Product> products { get; set; }        
-    }
+	public class ProductDetailsModel: Product
+	{
 
-    
+	}
 }

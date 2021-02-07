@@ -1,18 +1,29 @@
 ﻿@model TechTest01.Web.Models.HomeModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
-<h2>Index</h2>
+<h2>Home Page</h2>
 
-<div>
-    <h4>HomeModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-</div>
+<table class="table">
+    <tr>
+        <th>            
+            @Html.DisplayFor(model => model.Product1.Name)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.Product2.Name)
+        </th>
+    </tr>
+    <tr>
+        <td>            
+            <img alt="im1"  width="200" height="200" src="@Model.Product1.ImageUrl" />
+        </td>
+        <td>
+            <img alt="im2"  width="200" height="200" src="@Model.Product2.ImageUrl" />
+        </td>
+    </tr>
+</table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Product List", "Index", "Products")
 </p>

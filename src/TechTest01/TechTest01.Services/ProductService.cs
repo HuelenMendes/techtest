@@ -23,6 +23,11 @@ namespace TechTest01.Services
             return this.repository.GetByID(id);
         }
 
+        public Product GetBySlug(string slug)
+        {
+            return this.repository.GetBySlug(slug);
+        }
+
         public ICollection<Product> GetProducts()
         {
             return this.repository.GetAll();

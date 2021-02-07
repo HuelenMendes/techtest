@@ -14,6 +14,12 @@ namespace TechTest01.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               "Index",
+               "Product/{slug}",
+               new { controller = "Product", action = "Index" }
+            );
+           
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

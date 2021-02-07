@@ -16,7 +16,7 @@ namespace TechTest01.Repository.Repositories
         internal DbSet<Product> dbSet;
         public ProductRepository()
         {
-            this.context = new ApplicationContext();
+            this.context = ApplicationContext.GetInstance;
             this.dbSet = context.Set<Product>();
         }
 
@@ -29,5 +29,10 @@ namespace TechTest01.Repository.Repositories
         {
             return dbSet.Find(id);
         }
+
+        public Product GetBySlug(string slug)
+        {
+            return dbSet.FirstOrDefault(p => p.Slug == slug);            
+        }        
     }
 }
