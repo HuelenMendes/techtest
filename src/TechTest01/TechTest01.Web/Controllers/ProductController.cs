@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TechTest01.Services;
+using TechTest01.Services.Catalog;
 using TechTest01.Web.Models;
 
 namespace TechTest01.Web.Controllers
@@ -13,17 +14,13 @@ namespace TechTest01.Web.Controllers
     public class ProductController : Controller
     {
 
-        private ProductService service = null;
-        public ProductController()
-        {
-            service = new ProductService();
-        }
-        public ProductController(ProductService service)
+        private IProductService service = null;
+        
+        public ProductController(IProductService service)
         {
             this.service = service;
         }
-
-        //[Route("Product/{slug}")]
+        
         public ActionResult Index(string slug)
         {
             ProductDetailsModel details;
@@ -32,17 +29,16 @@ namespace TechTest01.Web.Controllers
             {
                 return new HttpNotFoundResult();
             }
-            
-            details = new ProductDetailsModel();
-            details.Id = product.Id;
-            details.Name = product.Name;
-            details.Description = product.Description;
-            details.Price = product.Price;
-            details.Slug = product.Slug;
-            details.ImageUrl = product.ImageUrl;
 
-
-            ViewBag.Title = product.Slug;
+            details = new ProductDetailsModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Slug = product.Slug,
+                ImageUrl = product.ImageUrl
+            };
 
             return View(details);
         }

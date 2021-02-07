@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TechTest01.Services;
+using TechTest01.Services.Catalog;
 using TechTest01.Web.Models;
 
 namespace TechTest01.Web.Controllers
@@ -11,16 +12,13 @@ namespace TechTest01.Web.Controllers
     public class ProductsController : Controller
     {
         // GET: Product
-        private ProductService service = null;
-        public ProductsController()
-        {
-            service = new ProductService();
-        }
-        public ProductsController(ProductService service)
+        private IProductService service = null;
+        
+        public ProductsController(IProductService service)
         {
             this.service = service;
         }
-
+        
         public ActionResult Index()
         {
             var products = this.service.GetProducts().
