@@ -19,15 +19,21 @@ namespace TechTest01.Web.Controllers
         public ProductController(IProductService service)
         {
             this.service = service;
-        }
-        
+        }      
+
         public ActionResult Index(string slug)
+        {
+            var details = GetDetail(slug);
+            return View(details);
+        }
+
+        public ProductDetailsModel GetDetail(string slug)
         {
             ProductDetailsModel details;
             var product = this.service.GetBySlug(slug);
             if (product == null)
             {
-                return new HttpNotFoundResult();
+                return null;
             }
 
             details = new ProductDetailsModel
@@ -40,7 +46,7 @@ namespace TechTest01.Web.Controllers
                 ImageUrl = product.ImageUrl
             };
 
-            return View(details);
+            return details;
         }
        
     }

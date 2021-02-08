@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +18,25 @@ namespace TechTest01.Web
                "Product/{slug}",
                new { controller = "Product", action = "Index" }
             );
-           
+
+            routes.MapRoute(
+                  "AngApp",
+                  "Angular",
+                  new { controller = "App", action = "Index" }
+               );
+
+            routes.MapRoute(
+            "AngPrdList",
+              "Angular/Products",
+              new { controller = "List", action = "Index" }
+           );
+
+            routes.MapRoute(
+            "AngPrdDetail",
+              "Angular/Product",
+              new { controller = "App", action = "ProductDetail" }
+           );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

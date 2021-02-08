@@ -1,27 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using TechTest01.Domain.Catalog;
-using TechTest01.Services;
 using TechTest01.Services.Catalog;
 using TechTest01.Web.Models;
 
 namespace TechTest01.Web.Controllers
-{
+{    
     public class HomeController : Controller
     {
-        private IProductService service = null;
-        
+        private readonly IProductService service = null;
+
         public HomeController(IProductService service)
         {
             this.service = service;
-        }
+        }     
 
         public ActionResult Index()
         {
-
+            var randomProducts = Get();
+            return View(randomProducts);
+        }     
+      
+        public HomeModel Get()
+        {
             var randomProducts = new HomeModel();
 
             var products = this.service.GetProducts().ToArray();
@@ -44,7 +45,7 @@ namespace TechTest01.Web.Controllers
                 randomProducts.Product1 = products[0];
             }
 
-            return View(randomProducts);
-        }        
+            return randomProducts;
+        }
     }
 }

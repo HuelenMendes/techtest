@@ -17,17 +17,25 @@ namespace TechTest01.Web.Controllers
         public ProductsController(IProductService service)
         {
             this.service = service;
-        }
-        
+        }      
+
         public ActionResult Index()
         {
-            var products = this.service.GetProducts().
-                Select(p => new ProductsModel() { Id = p.Id,
-                Name = p.Name,
-                ImageUrl = p.ImageUrl,
-                Slug = p.Slug
-            }).ToArray();
+            var products = GetAll();
             return View(products);
+        }
+
+        public ProductsModel[] GetAll()
+        {
+            var products = this.service.GetProducts().
+                Select(p => new ProductsModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    ImageUrl = p.ImageUrl,
+                    Slug = p.Slug
+                }).ToArray();
+            return products;
         }
     }
 }
